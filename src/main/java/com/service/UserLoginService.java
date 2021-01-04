@@ -24,21 +24,26 @@ public class UserLoginService {
                 return "right_password";
             }
         }else{
-
+            System.out.println("luelleleled");
         }
         //System.out.println("password = " + password);
         return "wrong_password";
     }
 
-    /*
-    public boolean checkPassPwd(){
+    public String selectPasswordByTelephone(String telephone, String password){
 
-        return false;
+        String realPassword = null;
+        realPassword = userLoginRepository.selectPasswordByTelephone(telephone);
+        if(realPassword != null) {
+            if (!realPassword.equals(password)) {
+                return "wrong_password";
+            } else if (realPassword.equals(password)) {
+                return "right_password";
+            }
+        }else{
+
+        }
+        //System.out.println("password = " + password);
+        return "wrong_password";
     }
-
-    public boolean checkVerifyCode(){
-
-        return false;
-    }
-     */
 }

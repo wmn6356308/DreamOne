@@ -10,4 +10,9 @@ public interface UserLoginRepository {
     // 引用id="userResult"的@Results
     @ResultType(String.class)
     public String selectPasswordByUsername(@Param("username")String username);
+
+    @Select("select password from tb_user where telephone = #{username}")
+    // 引用id="userResult"的@Results
+    @ResultType(String.class)
+    public String selectPasswordByTelephone(@Param("username")String username);
 }
