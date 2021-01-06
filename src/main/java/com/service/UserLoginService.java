@@ -24,9 +24,9 @@ public class UserLoginService {
                 return "right_password";
             }
         }else{
-            System.out.println("luelleleled");
+            System.out.println("密码为空");
         }
-        //System.out.println("password = " + password);
+
         return "wrong_password";
     }
 
@@ -43,7 +43,7 @@ public class UserLoginService {
         }else{
 
         }
-        //System.out.println("password = " + password);
+
         return "wrong_password";
     }
 }

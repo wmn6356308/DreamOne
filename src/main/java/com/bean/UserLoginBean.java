@@ -1,14 +1,20 @@
 package com.bean;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+@Component
 public class UserLoginBean {
-    private String username;
+
+    private int id;
+    private String nickname;
     private String passWord;
     private String verifyCode;
     private int loginType;      //0：用户名密码登录；1：验证码登录
 
     /* Setter */
     public void setUserName(String username) {
-        this.username = username;
+        this.nickname = username;
     }
 
     public void setPassWord(String passWord) {
@@ -25,7 +31,7 @@ public class UserLoginBean {
 
     /* Getter */
     public String getUsername() {
-        return username;
+        return nickname;
     }
 
     public String getPassWord() {
