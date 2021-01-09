@@ -41,9 +41,15 @@ public class UserLoginService {
                 return "right_password";
             }
         }else{
-
+            return "err_page";
         }
 
-        return "wrong_password";
+        return "err_page";
+    }
+
+    /* 使用手机号和验证码登录，前端传来手机号和验证码，后端校验 */
+    public String loginByTeleAndVeriCode(String telephone, String veriCode){
+
+        return "err_page";
     }
 }
