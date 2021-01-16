@@ -71,13 +71,22 @@ export default {
     };
   },
   created() {
+    console.log(this.$route, "this.$route");
     if (sessionStorageGet("userInfo")) this.$router.push("/home");
   },
   mounted() {
     Raining.init(this.$refs.cas);
+    console.log(this.previousRoute, "this.previousRoute");
+    console.log(this.$route, "this.$route");
   },
   beforeDestroy() {
     Raining.stop();
+  },
+  computed: {
+    previousRoute() {
+      console.log(this._, "this.$lodash");
+      return this._.get(this.$route, "params.previousRoute", null);
+    }
   },
   methods: {
     sendCode() {
@@ -146,13 +155,7 @@ export default {
           userInfo: { userName: this.userName }
         });
 
-        const ERROR_MESSAGE = sessionStorageGet("ERROR_MESSAGE");
-        if (ERROR_MESSAGE == "TIMEOUT" || ERROR_MESSAGE == "NOLOGIN") {
-          sessionStorageRemove("ERROR_MESSAGE");
-          this.$router.go(-1);
-        } else {
-          this.$router.push("/home");
-        }
+        this.$router.push(this.previousRoute ? this.previousRoute : "/home");
       }, 3000);
     },
     updateRemainingTimeMsg(RemainingTime, updateRemainingTimer) {

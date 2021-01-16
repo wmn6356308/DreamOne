@@ -3,8 +3,7 @@ import {
 } from 'element-ui'
 import {
   sessionStorageGet,
-  sessionStorageRemove,
-  sessionStorageSet
+  sessionStorageRemove
 } from '@/utils/index'
 import {
   ROUTE_WHITE_LIST
@@ -18,20 +17,24 @@ const userInfoValidation = (to, from, next) => {
 
   if (!cache) {
     Message.warning('请先登录！')
-    sessionStorageSet('ERROR_MESSAGE', 'NOLOGIN')
 
     return next({
-      path: '/login'
+      path: '/login',
+      params: {
+        previousRoute: to
+      }
     })
   }
 
   if (cache.timestamp && now - cache.timestamp > 3600000) {
     Message.warning('账号过期，请重新登录！')
     sessionStorageRemove('userInfo')
-    sessionStorageSet('ERROR_MESSAGE', 'TIMEOUT')
 
     return next({
-      path: '/login'
+      path: '/login',
+      params: {
+        previousRoute: to
+      }
     })
   }
 

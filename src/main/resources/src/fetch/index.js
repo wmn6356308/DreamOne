@@ -40,10 +40,11 @@ fetch.interceptors.request.use(
       if (!cache) {
         Message.warning('请登录！')
 
-        sessionStorageSet('ERROR_MESSAGE', 'NOLOGIN')
-
         router.push({
-          path: '/login'
+          path: '/login',
+          params: {
+            previousRoute: router.currentRoute
+          }
         })
       }
 
@@ -51,7 +52,6 @@ fetch.interceptors.request.use(
         Message.warning('账号过期，请重新登录！')
 
         sessionStorageRemove('userInfo')
-        sessionStorageSet('ERROR_MESSAGE', 'TIMEOUT')
 
         router.push({
           path: '/login',
