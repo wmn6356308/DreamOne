@@ -32,6 +32,17 @@ export function localStorageRemove(key) {
   return window.localStorage.removeItem(key)
 }
 
+export function updateTimestampOfUserInfoCache(){
+  const newTimestamp = Date.now()
+  const cache = sessionStorageGet('userInfo')
+
+  sessionStorageSet('userInfo', {
+    ...cache,
+    
+    timestamp: newTimestamp
+  })
+}
+
 /**
  *  删除对象的某些属性
  *  @param {Object} obj 目标对象

@@ -30,7 +30,7 @@ Vue.prototype.$alert = MessageBox.alert
 Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$notify = Notification
 
-Vue.prototype._ = _
+Vue.prototype.$lodash = _
 
 Vue.prototype.$ELEMENT = {
   zIndex: 9999

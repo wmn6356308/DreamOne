@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import axios from 'axios'
 import * as _ from 'lodash'
 import {
@@ -10,7 +9,7 @@ import Loading from '../utils/loading'
 import {
   sessionStorageRemove,
   sessionStorageGet,
-  sessionStorageSet
+  updateTimestampOfUserInfoCache
 } from '../utils/index'
 import router from '../router/index'
 import {
@@ -85,16 +84,8 @@ fetch.interceptors.response.use(
   res => {
     loading.close();
 
-    const cache = sessionStorageGet('userInfo')
-    sessionStorageSet('userInfo', cache)
-
     if (!_.includes(ROUTE_WHITE_LIST, path)) {
-      const cache = sessionStorageGet('userInfo')
-
-      sessionStorageSet('userInfo', {
-        ...cache,
-        timestamp
-      })
+      updateTimestampOfUserInfoCache()
     }
 
     if (!res.data.success) {
@@ -109,4 +100,4 @@ fetch.interceptors.response.use(
   }
 )
 
-Vue.prototype.$fetch = fetch
+export default fetch

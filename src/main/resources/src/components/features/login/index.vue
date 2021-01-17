@@ -76,16 +76,13 @@ export default {
   },
   mounted() {
     Raining.init(this.$refs.cas);
-    console.log(this.previousRoute, "this.previousRoute");
-    console.log(this.$route, "this.$route");
   },
   beforeDestroy() {
     Raining.stop();
   },
   computed: {
     previousRoute() {
-      console.log(this._, "this.$lodash");
-      return this._.get(this.$route, "params.previousRoute", null);
+      return this.$lodash.get(this.$route, "params.previousRoute", null);
     }
   },
   methods: {

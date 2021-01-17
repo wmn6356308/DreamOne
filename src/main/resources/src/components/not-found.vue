@@ -2,7 +2,7 @@
   <div class="not-found-container">
     <h1>404 Page!!!</h1>
     <div>
-      <router-link to="/home" replace>Go Home page</router-link>
+      <router-link to="/home" replace>Go To Home page</router-link>
     </div>
   </div>
 </template>

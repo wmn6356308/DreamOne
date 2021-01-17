@@ -11,14 +11,13 @@ const EXPORT_OBJ = {
   _H: window.innerHeight,
   isStop: false,
   setCanvasLayout() {
-    this._W = window.innerWidth
-    this._H = window.innerHeight
+    this.cas.width = this._W = window.innerWidth
+    this.cas.height = this._H = window.innerHeight
 
-    this.cas.width = this._W
-    this.cas.height = this._H
+    console.log(this.cas.height, 'this.cas.height')
   },
   setResizeHandler() {
-    window.addEventListener('resize', () => this.setCanvasLayout())
+    window.addEventListener('resize', eventRainHandler)
   },
   removeResizeHandler() {
     window.removeEventListener('resize', eventRainHandler)
@@ -58,7 +57,7 @@ const EXPORT_OBJ = {
   }
 }
 
-window.eventRainHandler = EXPORT_OBJ.setCanvasLayout
+window.eventRainHandler = () => EXPORT_OBJ.setCanvasLayout()
 
 export default EXPORT_OBJ
 
